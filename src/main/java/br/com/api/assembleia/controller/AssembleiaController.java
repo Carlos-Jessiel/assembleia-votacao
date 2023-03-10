@@ -2,6 +2,7 @@ package br.com.api.assembleia.controller;
 
 import br.com.api.assembleia.dto.pauta.DadosCadastroDto;
 import br.com.api.assembleia.dto.pauta.DadosListagemDto;
+import br.com.api.assembleia.service.pauta.BuscarPautaPorIdService;
 import br.com.api.assembleia.service.pauta.CadastrarPautaService;
 import br.com.api.assembleia.service.pauta.ListarPautasService;
 import org.springframework.data.domain.Page;
@@ -18,10 +19,14 @@ public class AssembleiaController {
 
     private final ListarPautasService listarPautasService;
 
+    private final BuscarPautaPorIdService buscarPautaPorIdService;
+
     public AssembleiaController(CadastrarPautaService cadastrarPautaService,
-                                ListarPautasService listarPautasService){
+                                ListarPautasService listarPautasService,
+                                BuscarPautaPorIdService buscarPautaPorIdService){
         this.cadastrarPautaService = cadastrarPautaService;
         this.listarPautasService = listarPautasService;
+        this.buscarPautaPorIdService = buscarPautaPorIdService;
     }
 
     @PostMapping
@@ -33,4 +38,10 @@ public class AssembleiaController {
     public ResponseEntity<Page<DadosListagemDto>> listar(@PageableDefault(size = 10, sort = {"id"}) Pageable paginacao){
         return listarPautasService.listar(paginacao);
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity buscarPorId (@PathVariable Long id){
+        return buscarPautaPorIdService.buscarPorId(id);
+    }
+
 }
