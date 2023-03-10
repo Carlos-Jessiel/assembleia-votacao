@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity(name = "Pauta")
-@Table(name = "pauta")
+@Table(name = "pautas")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,13 +21,17 @@ public class Pauta {
 
     private String titulo;
 
+    @Column(columnDefinition = "TEXT")
     private String descricao;
 
-    private LocalDateTime inicio;
+    private LocalDateTime horarioInicio;
 
-    private LocalDateTime fim;
-    private Integer sim;
-    private Integer nao;
+    private LocalDateTime horarioFim;
+
+    private Integer votoSim;
+
+    private Integer votoNao;
+
     @Enumerated(EnumType.STRING)
     private Status status;
 }
