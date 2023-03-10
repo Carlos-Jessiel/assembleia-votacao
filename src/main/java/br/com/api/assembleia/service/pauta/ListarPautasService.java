@@ -17,8 +17,7 @@ public class ListarPautasService {
     }
 
     public ResponseEntity<Page<DadosListagemDto>> listar(Pageable paginacao) {
-        var lista = repository.findAll(paginacao).map(DadosListagemDto::new);
-        return ResponseEntity.ok().body(lista);
+        return ResponseEntity.ok().body(repository.findAll(paginacao).map(DadosListagemDto::new));
 
     }
 }
