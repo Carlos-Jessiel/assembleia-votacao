@@ -1,4 +1,4 @@
-package br.com.api.assembleia.service;
+package br.com.api.assembleia.service.pauta;
 
 import br.com.api.assembleia.dto.pauta.DadosCadastroDto;
 import br.com.api.assembleia.dto.pauta.DadosDetalhamentoDto;
@@ -7,6 +7,7 @@ import br.com.api.assembleia.validador.base.ErroDto;
 import br.com.api.assembleia.validador.builder.BaseDtoErro;
 import br.com.api.assembleia.validador.builder.BaseDtoSucesso;
 import br.com.api.assembleia.validador.pauta.PautaValidacoes;
+import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class CadastrarPautaService {
         this.repository = repository;
     }
 
+    @Transactional
     public ResponseEntity cadastrar(DadosCadastroDto dados) {
         List<ErroDto> erros = PautaValidacoes.executar(dados);
 
