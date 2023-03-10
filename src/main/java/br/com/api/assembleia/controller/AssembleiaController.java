@@ -23,16 +23,20 @@ public class AssembleiaController {
 
     private final AbrirVotacaoService abrirVotacaoService;
 
+    private final ResultadoVotacaoService resultadoVotacaoService;
+
     public AssembleiaController(CadastrarPautaService cadastrarPautaService,
                                 ListarPautasService listarPautasService,
                                 BuscarPautaPorIdService buscarPautaPorIdService,
                                 DeletarPautaService deletarPautaService,
-                                AbrirVotacaoService abrirVotacaoService){
+                                AbrirVotacaoService abrirVotacaoService,
+                                ResultadoVotacaoService resultadoVotacaoService){
         this.cadastrarPautaService = cadastrarPautaService;
         this.listarPautasService = listarPautasService;
         this.buscarPautaPorIdService = buscarPautaPorIdService;
         this.deletarPautaService = deletarPautaService;
         this.abrirVotacaoService = abrirVotacaoService;
+        this.resultadoVotacaoService = resultadoVotacaoService;
     }
 
     @PostMapping
@@ -58,6 +62,11 @@ public class AssembleiaController {
     @PutMapping("/{idPauta}")
     public ResponseEntity abrirVotacao (@PathVariable Long idPauta, @RequestParam(defaultValue = "1") Integer tempo){
         return abrirVotacaoService.abrirVotacao(idPauta, tempo);
+    }
+
+    @GetMapping("/resultado/{idPauta}")
+    public ResponseEntity resultadoVotacao(@PathVariable Long idPauta){
+        return resultadoVotacaoService.resultadoVotacao(idPauta);
     }
 
 }

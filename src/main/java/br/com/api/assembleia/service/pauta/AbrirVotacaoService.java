@@ -7,6 +7,7 @@ import br.com.api.assembleia.model.enums.Status;
 import br.com.api.assembleia.repository.PautaRepository;
 import br.com.api.assembleia.validador.builder.BaseDtoErro;
 import br.com.api.assembleia.validador.builder.BaseDtoSucesso;
+import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class AbrirVotacaoService {
         this.configTempoDeSessao = configTempoDeSessao;
     }
 
-
+    @Transactional
     public ResponseEntity abrirVotacao(Long idPauta, Integer tempo) {
         Optional<Pauta> pauta = repository.findById(idPauta);
         if (pauta.isEmpty()){
