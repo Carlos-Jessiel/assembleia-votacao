@@ -1,6 +1,6 @@
 package br.com.api.assembleia.controller;
 
-import br.com.api.assembleia.dto.DadosCadastroDto;
+import br.com.api.assembleia.dto.pauta.DadosCadastroDto;
 import br.com.api.assembleia.service.CadastrarPautaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
