@@ -2,10 +2,7 @@ package br.com.api.assembleia.controller;
 
 import br.com.api.assembleia.dto.pauta.DadosCadastroDto;
 import br.com.api.assembleia.dto.pauta.DadosListagemDto;
-import br.com.api.assembleia.service.pauta.BuscarPautaPorIdService;
-import br.com.api.assembleia.service.pauta.CadastrarPautaService;
-import br.com.api.assembleia.service.pauta.DeletarPautaService;
-import br.com.api.assembleia.service.pauta.ListarPautasService;
+import br.com.api.assembleia.service.pauta.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -24,14 +21,18 @@ public class AssembleiaController {
 
     private final DeletarPautaService deletarPautaService;
 
+    private final AbrirVotacaoService abrirVotacaoService;
+
     public AssembleiaController(CadastrarPautaService cadastrarPautaService,
                                 ListarPautasService listarPautasService,
                                 BuscarPautaPorIdService buscarPautaPorIdService,
-                                DeletarPautaService deletarPautaService){
+                                DeletarPautaService deletarPautaService,
+                                AbrirVotacaoService abrirVotacaoService){
         this.cadastrarPautaService = cadastrarPautaService;
         this.listarPautasService = listarPautasService;
         this.buscarPautaPorIdService = buscarPautaPorIdService;
         this.deletarPautaService = deletarPautaService;
+        this.abrirVotacaoService = abrirVotacaoService;
     }
 
     @PostMapping
@@ -52,6 +53,11 @@ public class AssembleiaController {
     @DeleteMapping("{id}")
     public ResponseEntity deletar(@PathVariable Long id){
         return deletarPautaService.deletar(id);
+    }
+
+    @PutMapping("/{idPauta}")
+    public ResponseEntity abrirVotacao (@PathVariable Long idPauta, @RequestParam(defaultValue = "1") Integer tempo){
+        return abrirVotacaoService.abrirVotacao(idPauta, tempo);
     }
 
 }
