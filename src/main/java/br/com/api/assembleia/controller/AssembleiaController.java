@@ -4,6 +4,7 @@ import br.com.api.assembleia.dto.pauta.DadosCadastroDto;
 import br.com.api.assembleia.dto.pauta.DadosListagemDto;
 import br.com.api.assembleia.service.pauta.BuscarPautaPorIdService;
 import br.com.api.assembleia.service.pauta.CadastrarPautaService;
+import br.com.api.assembleia.service.pauta.DeletarPautaService;
 import br.com.api.assembleia.service.pauta.ListarPautasService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,12 +22,16 @@ public class AssembleiaController {
 
     private final BuscarPautaPorIdService buscarPautaPorIdService;
 
+    private final DeletarPautaService deletarPautaService;
+
     public AssembleiaController(CadastrarPautaService cadastrarPautaService,
                                 ListarPautasService listarPautasService,
-                                BuscarPautaPorIdService buscarPautaPorIdService){
+                                BuscarPautaPorIdService buscarPautaPorIdService,
+                                DeletarPautaService deletarPautaService){
         this.cadastrarPautaService = cadastrarPautaService;
         this.listarPautasService = listarPautasService;
         this.buscarPautaPorIdService = buscarPautaPorIdService;
+        this.deletarPautaService = deletarPautaService;
     }
 
     @PostMapping
@@ -42,6 +47,11 @@ public class AssembleiaController {
     @GetMapping("{id}")
     public ResponseEntity buscarPorId (@PathVariable Long id){
         return buscarPautaPorIdService.buscarPorId(id);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity deletar(@PathVariable Long id){
+        return deletarPautaService.deletar(id);
     }
 
 }
