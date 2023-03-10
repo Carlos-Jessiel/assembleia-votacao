@@ -1,5 +1,6 @@
 package br.com.api.assembleia.model;
 
+import br.com.api.assembleia.model.enums.EscolhaVoto;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
