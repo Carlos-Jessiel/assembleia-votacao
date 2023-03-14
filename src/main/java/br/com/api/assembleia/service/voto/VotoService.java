@@ -5,6 +5,7 @@ import br.com.api.assembleia.dto.voto.DadosVotacaoDto;
 import br.com.api.assembleia.model.Voto;
 import br.com.api.assembleia.model.VotoDados;
 import br.com.api.assembleia.model.enums.EscolhaVoto;
+import br.com.api.assembleia.model.enums.Status;
 import br.com.api.assembleia.repository.AssociadoRepository;
 import br.com.api.assembleia.repository.PautaRepository;
 import br.com.api.assembleia.repository.VotoRepository;
@@ -84,12 +85,18 @@ public class VotoService {
         Voto voto = new Voto(votoDados, dados.voto());
 
         pautaRepository.save(pauta);
-        configTempoDeSessao.tempoVoto(pauta);
+        configTempoDeSessao.tempoDeSessao(pauta.getId(), pauta.getHorarioFim());
         votoRepository.save(voto);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(new BaseDtoSucesso<>
                         ("Voto cadastrado com sucesso.", HttpStatus.CREATED).get());
+    }
+
+    public void encerrarVotacao(Long id) {
+        var model = pautaRepository.findById(id).get();
+        model.setStatus(Status.VOTACAO_FINALIZADA);
+        pautaRepository.save(model);
     }
 }

@@ -1,8 +1,7 @@
 package br.com.api.assembleia.configuracoes;
 
-import br.com.api.assembleia.model.Pauta;
-import br.com.api.assembleia.model.enums.Status;
-import br.com.api.assembleia.repository.PautaRepository;
+import br.com.api.assembleia.service.voto.VotoService;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -12,41 +11,29 @@ import java.util.TimerTask;
 
 @Component
 public class ConfigTempoDeSessao {
+    private final VotoService votoService;
 
-    private final PautaRepository reposito;
-
-    public ConfigTempoDeSessao(PautaRepository reposito){
-        this.reposito = reposito;
+    public ConfigTempoDeSessao(@Lazy VotoService votoService){
+        this.votoService = votoService;
     }
 
-    public void tempoPauta(Long id) {
-        Pauta pauta = reposito.getReferenceById(id);
-        timer(pauta);
-    }
-
-    public void tempoVoto(Pauta pauta) {
-        timer(pauta);
-    }
-
-    public void timer(Pauta pauta){
+    public void tempoDeSessao(Long id, LocalDateTime horarioFim){
         Timer timer = new Timer();
 
-            timer.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    if(LocalDateTime.now(ZoneId.of("America/Sao_Paulo")).isAfter(pauta.getHorarioFim())) {
-                        pauta.setStatus(Status.VOTACAO_FINALIZADA);
-                        timer.cancel();
-                        reposito.save(pauta);
-                    }else {
-                        timer.cancel();
-                        timer(pauta);
-                    }
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if(LocalDateTime.now(ZoneId.of("America/Sao_Paulo")).isAfter(horarioFim)) {
+                    votoService.encerrarVotacao(id);
+                    timer.cancel();
+                }else {
+                    timer.cancel();
+                    tempoDeSessao(id, horarioFim);
                 }
-            }, 0, 60000L);
+            }
+        }, 0, 60000L);
 
     }
-
 
 }
 
