@@ -38,7 +38,6 @@ public class ConfigTempoDeSessao {
                         pauta.setStatus(Status.VOTACAO_FINALIZADA);
                         timer.cancel();
                         reposito.save(pauta);
-                        System.out.println("finalizado");
                     }else {
                         timer.cancel();
                         timer(pauta);
