@@ -4,6 +4,7 @@ import br.com.api.assembleia.dto.associado.DadosCadastroAssociadoDto;
 import br.com.api.assembleia.dto.associado.DadosListagemAssociadoDto;
 import br.com.api.assembleia.service.associado.BuscarAssociadoPorIdService;
 import br.com.api.assembleia.service.associado.CadastrarAssociadoService;
+import br.com.api.assembleia.service.associado.DeletarAssociadoService;
 import br.com.api.assembleia.service.associado.ListarAssociadoService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,12 +22,16 @@ public class AssociadoController {
 
     private final BuscarAssociadoPorIdService buscarAssociadoPorIdService;
 
+    private final DeletarAssociadoService deletarAssociadoService;
+
     public AssociadoController(CadastrarAssociadoService cadastrarAssociadoService,
                                ListarAssociadoService listarAssociadoService,
-                               BuscarAssociadoPorIdService buscarAssociadoPorIdService){
+                               BuscarAssociadoPorIdService buscarAssociadoPorIdService,
+                               DeletarAssociadoService deletarAssociadoService){
         this.cadastrarAssociadoService = cadastrarAssociadoService;
         this.listarAssociadoService = listarAssociadoService;
         this.buscarAssociadoPorIdService = buscarAssociadoPorIdService;
+        this.deletarAssociadoService = deletarAssociadoService;
     }
 
     @PostMapping
@@ -42,5 +47,10 @@ public class AssociadoController {
     @GetMapping("{id}")
     public ResponseEntity buscarPorId(@PathVariable Long id){
         return buscarAssociadoPorIdService.buscarPorId(id);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity deletar(@PathVariable Long id){
+        return deletarAssociadoService.deletar(id);
     }
 }
