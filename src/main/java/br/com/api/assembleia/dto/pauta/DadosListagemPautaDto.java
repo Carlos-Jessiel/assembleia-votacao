@@ -3,7 +3,7 @@ package br.com.api.assembleia.dto.pauta;
 import br.com.api.assembleia.model.Pauta;
 import br.com.api.assembleia.model.enums.Status;
 
-public record DadosListagemDto(
+public record DadosListagemPautaDto(
 
         Long id,
         String titulo,
@@ -13,7 +13,7 @@ public record DadosListagemDto(
         Status status
 ) {
 
-    public DadosListagemDto(Pauta pauta){
+    public DadosListagemPautaDto(Pauta pauta){
         this(pauta.getId(),
                 pauta.getTitulo(),
                 pauta.getDescricao(),

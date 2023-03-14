@@ -10,6 +10,7 @@ import br.com.api.assembleia.validador.builder.BaseDtoSucesso;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class CadastrarAssociadoService {
         this.repository = repository;
     }
 
+    @Transactional
     public ResponseEntity cadastrar(DadosCadastroAssociadoDto dados) {
         if (repository.existsByCpf(dados.cpf())){
             BaseDtoErro erro = new BaseDtoErro(HttpStatus.CONFLICT);

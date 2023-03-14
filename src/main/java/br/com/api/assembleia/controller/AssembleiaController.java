@@ -1,7 +1,7 @@
 package br.com.api.assembleia.controller;
 
-import br.com.api.assembleia.dto.pauta.DadosCadastroDto;
-import br.com.api.assembleia.dto.pauta.DadosListagemDto;
+import br.com.api.assembleia.dto.pauta.DadosCadastroPautaDto;
+import br.com.api.assembleia.dto.pauta.DadosListagemPautaDto;
 import br.com.api.assembleia.service.pauta.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,12 +40,12 @@ public class AssembleiaController {
     }
 
     @PostMapping
-    public ResponseEntity cadastrar(@RequestBody DadosCadastroDto dados){
+    public ResponseEntity cadastrar(@RequestBody DadosCadastroPautaDto dados){
         return cadastrarPautaService.cadastrar(dados);
     }
 
     @GetMapping
-    public ResponseEntity<Page<DadosListagemDto>> listar(@PageableDefault(size = 10, sort = {"id"}) Pageable paginacao){
+    public ResponseEntity<Page<DadosListagemPautaDto>> listar(@PageableDefault(size = 10, sort = {"id"}) Pageable paginacao){
         return listarPautasService.listar(paginacao);
     }
 

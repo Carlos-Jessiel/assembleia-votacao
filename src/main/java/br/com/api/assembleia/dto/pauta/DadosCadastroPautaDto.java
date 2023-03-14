@@ -3,14 +3,14 @@ package br.com.api.assembleia.dto.pauta;
 import br.com.api.assembleia.model.Pauta;
 import br.com.api.assembleia.model.enums.Status;
 
-public record DadosCadastroDto(
+public record DadosCadastroPautaDto(
 
         String titulo,
 
         String descricao
 
 ) {
-        public static Pauta criarPauta(DadosCadastroDto dados) {
+        public static Pauta criarPauta(DadosCadastroPautaDto dados) {
                 Pauta model = new Pauta();
                 model.setTitulo(dados.titulo);
                 model.setDescricao(dados.descricao);
