@@ -8,8 +8,6 @@ public record DadosListagemPautaDto(
         Long id,
         String titulo,
         String descricao,
-        Integer votoSim,
-        Integer votoNao,
         Status status
 ) {
 
@@ -17,8 +15,6 @@ public record DadosListagemPautaDto(
         this(pauta.getId(),
                 pauta.getTitulo(),
                 pauta.getDescricao(),
-                pauta.getVotoSim(),
-                pauta.getVotoNao(),
                 pauta.getStatus());
     }
 }
