@@ -1,6 +1,6 @@
 package br.com.api.assembleia.service.pauta;
 
-import br.com.api.assembleia.dto.pauta.DadosListagemDto;
+import br.com.api.assembleia.dto.pauta.DadosListagemPautaDto;
 import br.com.api.assembleia.repository.PautaRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,8 +16,8 @@ public class ListarPautasService {
         this.repository = repository;
     }
 
-    public ResponseEntity<Page<DadosListagemDto>> listar(Pageable paginacao) {
-        return ResponseEntity.ok().body(repository.findAll(paginacao).map(DadosListagemDto::new));
+    public ResponseEntity<Page<DadosListagemPautaDto>> listar(Pageable paginacao) {
+        return ResponseEntity.ok().body(repository.findAll(paginacao).map(DadosListagemPautaDto::new));
 
     }
 }

@@ -1,6 +1,6 @@
 package br.com.api.assembleia.validador.pauta;
 
-import br.com.api.assembleia.dto.pauta.DadosCadastroDto;
+import br.com.api.assembleia.dto.pauta.DadosCadastroPautaDto;
 import br.com.api.assembleia.validador.base.ErroDto;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public class PautaValidacoes {
 
-    public static List<ErroDto> executar(DadosCadastroDto dados){
+    public static List<ErroDto> executar(DadosCadastroPautaDto dados){
         List<ErroDto> erros = new ArrayList<>();
 
         if(dados.titulo() == null || dados.titulo().isBlank()){

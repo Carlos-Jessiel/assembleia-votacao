@@ -1,6 +1,6 @@
 package br.com.api.assembleia.service.pauta;
 
-import br.com.api.assembleia.dto.pauta.DadosCadastroDto;
+import br.com.api.assembleia.dto.pauta.DadosCadastroPautaDto;
 import br.com.api.assembleia.dto.pauta.DadosDetalhamentoDto;
 import br.com.api.assembleia.repository.PautaRepository;
 import br.com.api.assembleia.validador.base.ErroDto;
@@ -24,7 +24,7 @@ public class CadastrarPautaService {
     }
 
     @Transactional
-    public ResponseEntity cadastrar(DadosCadastroDto dados) {
+    public ResponseEntity cadastrar(DadosCadastroPautaDto dados) {
         List<ErroDto> erros = PautaValidacoes.executar(dados);
 
         if (!erros.isEmpty()){
@@ -33,7 +33,7 @@ public class CadastrarPautaService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(builder.get());
         }
 
-        var model = DadosCadastroDto.criarPauta(dados);
+        var model = DadosCadastroPautaDto.criarPauta(dados);
         repository.save(model);
 
         return ResponseEntity
