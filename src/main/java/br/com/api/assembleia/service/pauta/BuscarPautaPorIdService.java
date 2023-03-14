@@ -1,6 +1,6 @@
 package br.com.api.assembleia.service.pauta;
 
-import br.com.api.assembleia.dto.pauta.DadosDetalhamentoPautaDto;
+import br.com.api.assembleia.dto.pauta.DadosListagemPautaDto;
 import br.com.api.assembleia.repository.PautaRepository;
 import br.com.api.assembleia.validador.builder.BaseDtoErro;
 import br.com.api.assembleia.validador.builder.BaseDtoSucesso;
@@ -28,6 +28,6 @@ public class BuscarPautaPorIdService {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(new BaseDtoSucesso<>
-                        (new DadosDetalhamentoPautaDto(model), HttpStatus.OK).get());
+                        (new DadosListagemPautaDto(model), HttpStatus.OK).get());
     }
 }
