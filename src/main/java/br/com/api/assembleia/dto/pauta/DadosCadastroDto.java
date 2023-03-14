@@ -12,7 +12,6 @@ public record DadosCadastroDto(
 ) {
         public static Pauta criarPauta(DadosCadastroDto dados) {
                 Pauta model = new Pauta();
-                model.setId(null);
                 model.setTitulo(dados.titulo);
                 model.setDescricao(dados.descricao);
                 model.setStatus(Status.PENDENTE_PARA_LIBERACAO);
