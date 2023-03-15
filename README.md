@@ -44,46 +44,18 @@ As seguintes tecnologias foram utilizadas no desenvolvimento da API Rest do proj
 API documentada em Swagger para facilitar o entendimento das funcionalidade da aplicação.
 
 ---
-## 📝 Tarefas bônus
 
-As tarefas bônus não são obrigatórias, mas nos permitem avaliar outros conhecimentos que você possa ter. A gente sempre sugere que o candidato pondere e apresente até onde consegue fazer, considerando o seu nível de conhecimento e a qualidade da entrega.
+## 📝 O que queremos mostrar com essa API:
 
-* Tarefa Bônus 1 - Integração com sistemas externos 
-    * Integrar com um sistema que verifique, a partir do CPF do associado, se ele pode votar
-        * GET https://user-info.herokuapp.com/users/{cpf}
-        * Caso o CPF seja inválido, a API retornará o HTTP Status 404 (Not found). Você pode usar geradores de CPF para gerar CPFs válidos; 
-        * Caso o CPF seja válido, a API retornará se o usuário pode (ABLE_TO_VOTE) ou não pode (UNABLE_TO_VOTE) executar a operação
-
-
-* Tarefa Bônus 2 - Mensageria e filas
-  * O resultado da votação precisa ser informado para o restante da plataforma, isso deve ser feito preferencialmente através de mensageria. Quando a sessão de votação fechar, poste uma mensagem com o resultado da votação.
-
-
-* Tarefa Bônus 3 - Performance
-    * Imagine que sua aplicação possa ser usada em cenários que existam centenas de milhares de votos. Ela deve se comportar de maneira performática nesses cenários;
-    * Testes de performance são uma boa maneira de garantir e observar como sua aplicação se comporta.
-
-
-* Tarefa Bônus 4 - Versionamento da API
-  * Como você versionaria a API da sua aplicação? Que estratégia usar?
-  
-
-* O que será analisado
-  * Simplicidade no design da solução (evitar over engineering)
+  * Simplicidade no design da solução
   * Organização do código
   * Arquitetura do projeto
   * Boas práticas de programação (manutenibilidade, legibilidade etc)
   * Possíveis bugs
   * Tratamento de erros e exceções
   * Explicação breve do porquê das escolhas tomadas durante o desenvolvimento da solução
-  * Uso de testes automatizados e ferramentas de qualidade
   * Limpeza do código
   * Documentação do código e da API
-  * Logs da aplicação
   * Mensagens e organização dos commits
 
-
-* Observações importantes:
-  * Não inicie o teste sem sanar todas as dúvidas
-    * Iremos executar a aplicação para testá-la, cuide com qualquer dependência externa e deixe claro caso haja instruções especiais para execução do mesmo
-    * Teste bem sua solução, evite bugs
+  
