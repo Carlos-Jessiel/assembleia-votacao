@@ -58,4 +58,3 @@ API documentada em Swagger para facilitar o entendimento das funcionalidade da a
   * Documentação do código e da API
   * Mensagens e organização dos commits
 
-  
