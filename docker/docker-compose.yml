@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  assembleia-db:
+    container_name: assembleia
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: assembleia-admin
+      POSTGRES_PASSWORD: admin!123
+      POSTGRES_DB: assembleia-db
+    ports:
+      - "543:5432"
